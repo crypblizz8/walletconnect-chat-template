@@ -2,6 +2,8 @@
 
 https://user-images.githubusercontent.com/45455218/222201861-94f60704-5766-49c7-bb4a-0e1f4edc8ee5.mp4
 
+# Development
+
 Run `npm run dev` in your terminal, and then open [localhost:3000](http://localhost:3000) in your browser.
 
 Get a projectID from https://cloud.walletconnect.com/app
