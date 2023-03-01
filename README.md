@@ -1,4 +1,7 @@
-# Getting Started
+# WalletConnect Chat Template
+
+https://user-images.githubusercontent.com/45455218/222200434-70542a62-d9f2-4b12-bff6-a7a111653a54.mp4
+
 
 Run `npm run dev` in your terminal, and then open [localhost:3000](http://localhost:3000) in your browser.
 
