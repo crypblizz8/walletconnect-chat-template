@@ -16,7 +16,7 @@ function App({ Component, pageProps }: AppProps) {
   return (
     <WagmiConfig client={client}>
       <NextHead>
-        <title>wagmi</title>
+        <title>WalletConnect Chat Template</title>
       </NextHead>
 
       {mounted && <Component {...pageProps} />}
