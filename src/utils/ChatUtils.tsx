@@ -2,7 +2,7 @@ import { signMessage } from "@wagmi/core";
 import { ChatClient } from "@walletconnect/chat-client";
 import { useCallback, useEffect, useState } from "react";
 
-export let chatClient;
+export let chatClient: any;
 
 // Init functions for Chat
 export const createChatClient = async () => {
@@ -21,9 +21,10 @@ export const createChatClient = async () => {
 // Initialize Chat Client
 export default function initializeChatClient() {
   //@ts-ignore
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   const [initialized, setInitialized] = useState(false);
 
-  //@ts-ignore
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   useEffect(() => {
     if (!initialized) {
       createChatClient();
@@ -47,11 +48,11 @@ export const chatEventListeners = async (initialized: boolean) => {
   console.log("chatThreads on load:", chatClient?.chatThreads.getAll());
   console.log("chatMessages on load:", chatClient?.chatMessages.getAll());
 
-  chatClient?.on("chat_invite", async (args) => {
+  chatClient?.on("chat_invite", async (args: any) => {
     console.log("chat_invite...:", args);
   });
 
-  chatClient?.on("chat_joined", async (args) => {
+  chatClient?.on("chat_joined", async (args: any) => {
     console.log("chat_joined:", args);
     console.log(chatClient.chatThreads.getAll());
   });
@@ -62,7 +63,7 @@ export const registerSelf = async (address: string) => {
   console.log("registeringAddress: ", address);
   await chatClient?.register({
     account: `eip155:1:${address}`,
-    onSign: async (message) => {
+    onSign: async (message: any) => {
       console.log("[Chat] signing message...", message);
       signMessage({ message });
     },

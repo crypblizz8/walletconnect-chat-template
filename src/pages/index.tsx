@@ -1,29 +1,15 @@
-import { Web3Button } from "@web3modal/react";
-import { verifyMessage } from "ethers/lib/utils.js";
-import { useCallback, useEffect, useState } from "react";
-import { useAccount, useSignMessage } from "wagmi";
+import { useCallback, useEffect } from "react";
+import { useAccount } from "wagmi";
 import { signMessage } from "@wagmi/core";
 import { Header } from "../components/Header";
-import { TextInput } from "../components/TextInput";
 import initializeChatClient, {
   chatClient,
   chatEventListeners,
-  createChatClient,
   createInvite,
-  registerSelf,
 } from "../utils/ChatUtils";
 
 function Page() {
   const { address, isConnected } = useAccount();
-  const { frenAddress, setFrenAddress } = useState();
-
-  // const { data, error, isLoading, signMessage } = useSignMessage({
-  //   onSuccess(data, variables) {
-  //     // Verify signature when sign message succeeds
-  //     const address = verifyMessage(variables.message, data);
-  //     console.log("signed useSignMessage address", address);
-  //   },
-  // });
 
   const initialized = initializeChatClient();
 
@@ -34,7 +20,7 @@ function Page() {
       try {
         await chatClient?.register({
           account: `eip155:1:${address}`,
-          onSign: async (message) => {
+          onSign: async (message: any) => {
             console.log("[Chat] signing message.....", message);
             return signMessage({ message });
           },
@@ -54,8 +40,7 @@ function Page() {
 
   useEffect(() => {
     console.log("Chat Client Initialized: ", initialized);
-    console.log("frenAddress", frenAddress);
-  }, [address, initialized, frenAddress]);
+  }, [address, initialized]);
 
   return (
     <div className="flex h-screen justify-between items-center flex-col">
@@ -67,7 +52,7 @@ function Page() {
 
           <button
             disabled={!address && !initialized}
-            onClick={() => registerChatClient(address)}
+            onClick={() => registerChatClient(address!)}
             className="bg-blue-500  text-white font-bold py-2 px-4 rounded inline-flex items-center ml-2"
           >
             Register Self
